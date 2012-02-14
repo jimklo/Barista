@@ -165,5 +165,17 @@ public class ViewServerTest extends TestCase {
 		
 			
 	}
+	
+	public void testReduce() {
+		String res = ViewServer.process("[\"reduce\", [\"{\\\"builtin\\\":true,\\\"classname\\\":\\\"com.sri.learningregistry.couchdb.viewserver.views.MockReduceView\\\"}\"], [[[\"key\", \"id\"], \"value\"],[[\"key\", \"id\"], \"value\"],[[\"key\", \"id\"], \"value\"],[[\"key\", \"id\"], \"value\"],[[\"key\", \"id\"], \"value\"]]]\n");
+
+		assertEquals("[true,[5]]",res);
+	}
+	
+	public void testReReduce() {
+		String res = ViewServer.process("[\"rereduce\", [\"{\\\"builtin\\\":true,\\\"classname\\\":\\\"com.sri.learningregistry.couchdb.viewserver.views.MockReduceView\\\"}\"], [2,2,2,2,2]]\n");
+		
+		assertEquals("[true,[10]]",res);
+	}
 
 }
